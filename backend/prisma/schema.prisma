@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum JobStatus {
+  OPEN
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+
+enum RequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model User {
+  id             String    @id @default(uuid())
+  name           String
+  email          String    @unique
+  walletAddress  String    
+  role           String
+  password       String
+  createdAt      DateTime  @default(now())
+
+  jobsPosted     Job[]      @relation("ClientJobs")
+  jobsTaken      Job[]      @relation("FreelancerJobs")
+  requests       Request[]  @relation("FreelancerRequests")
+}
+
+model Job {
+  id             String      @id @default(uuid())
+  title          String
+  description    String
+  amount         Float
+  deadline       DateTime?
+  status         JobStatus   @default(OPEN)
+  createdAt      DateTime    @default(now())
+  Fund           String?
+
+  clientId       String
+  client         User        @relation("ClientJobs", fields: [clientId], references: [id])
+
+  freelancerId   String?
+  freelancer     User?       @relation("FreelancerJobs", fields: [freelancerId], references: [id])
+
+  requests       Request[]   @relation("JobRequests")
+}
+
+model Request {
+  id             String         @id @default(uuid())
+  message        String?
+  createdAt      DateTime       @default(now())
+  status         RequestStatus  @default(PENDING)
+
+  freelancerId   String
+  freelancer     User           @relation("FreelancerRequests", fields: [freelancerId], references: [id])
+
+  jobId          String
+  job            Job            @relation("JobRequests", fields: [jobId], references: [id])
+}
