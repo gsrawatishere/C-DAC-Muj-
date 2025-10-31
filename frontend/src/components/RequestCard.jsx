@@ -1,5 +1,6 @@
 import React from "react";
 import { Clock, User, Briefcase, CheckCircle } from "lucide-react";
+import { motion } from "framer-motion";
 
 const RequestCard = ({ request, onApprove }) => {
 

@@ -29,21 +29,20 @@ const RequestsList = () => {
   const handleApprove = async (jobId,freelancerId) =>{
     try {
 
-    const freeze = await axiosInstance.post('job/freeze',{
-        projectId : jobId
-    })
-
-     if(freeze.status !== 200){
-      return toast.error("Failed to freeze fund");
-     }
-
-
+    
        const response = await axiosInstance.post('job/approvejob',{
           jobId,
           freelancerId
        })
        if(response.status == 200){
         toast.success(response.data.message);
+        const freeze = await axiosInstance.post('job/freeze',{
+        projectId : jobId
+    })
+
+     if(freeze.status !== 200){
+      return toast.error("Failed to freeze fund");
+     }
        }
     } catch (error) {
        console.error("Login Error:", error);
