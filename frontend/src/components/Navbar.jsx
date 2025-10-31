@@ -13,7 +13,7 @@ const Navbar = () => {
       const response = await axiosInstance.get("/auth/logout");
       if (response.status === 200) {
         toast.success(response.data.msg || "Logged out successfully!");
-        navigate("/login");
+        navigate("/");
       }
     } catch (error) {
       console.error("❌ Logout failed:", error);

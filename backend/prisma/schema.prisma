@@ -10,6 +10,7 @@ datasource db {
 enum JobStatus {
   OPEN
   IN_PROGRESS
+  ASSIGNED
   COMPLETED
   CANCELLED
 }

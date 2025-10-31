@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RequestCard from "../components/RequestCard";
 import axiosInstance from "../api/axiosInstance";
 import { Loader2 } from "lucide-react";
+import toast from "react-hot-toast";
 
 const RequestsList = () => {
   const [requests, setRequests] = useState([]);
@@ -24,6 +25,34 @@ const RequestsList = () => {
       setLoading(false);
     }
   };
+
+  const handleApprove = async (jobId,freelancerId) =>{
+    try {
+
+    const freeze = await axiosInstance.post('job/freeze',{
+        projectId : jobId
+    })
+
+     if(freeze.status !== 200){
+      return toast.error("Failed to freeze fund");
+     }
+
+
+       const response = await axiosInstance.post('job/approvejob',{
+          jobId,
+          freelancerId
+       })
+       if(response.status == 200){
+        toast.success(response.data.message);
+       }
+    } catch (error) {
+       console.error("Login Error:", error);
+      const errorMsg =
+        error.response?.data?.message ||
+        "Something went wrong on handleapprove!";
+      toast.error(errorMsg);
+    }
+  }
 
   useEffect(() => {
     fetchRequests();
@@ -72,7 +101,7 @@ const RequestsList = () => {
       </h2>
       <div className="max-w-2xl mx-auto space-y-5">
         {requests.map((req) => (
-          <RequestCard key={req.id} request={req} />
+          <RequestCard key={req.id} request={req} onApprove={handleApprove} />
         ))}
       </div>
     </div>

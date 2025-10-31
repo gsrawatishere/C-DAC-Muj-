@@ -1,0 +1,52 @@
+[
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "projectId", "type": "uint256" },
+      { "internalType": "address", "name": "_freelancer", "type": "address" }
+    ],
+    "name": "freezeFunds",
+    "outputs": [],
+    "stateMutability": "payable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "projectId", "type": "uint256" }
+    ],
+    "name": "releaseFunds",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "projectId", "type": "uint256" }
+    ],
+    "name": "refundClient",
+    "outputs": [],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "client",
+    "outputs": [
+      { "internalType": "address", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      { "internalType": "uint256", "name": "", "type": "uint256" }
+    ],
+    "name": "freelancer",
+    "outputs": [
+      { "internalType": "address", "name": "", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

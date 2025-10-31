@@ -64,7 +64,7 @@ const JobCard = ({ job }) => {
         <div className="flex items-center gap-2">
           <DollarSign size={16} className="text-emerald-400" />
           <span className="text-slate-300">
-            {job.amount} {job.Fund || "ETH"}
+            {job.amount} {job.Fund || "ETH"} {job.freelancerId}
           </span>
         </div>
 
@@ -77,6 +77,9 @@ const JobCard = ({ job }) => {
           <Coins size={16} className="text-purple-400" />
           <span className="text-slate-300">
             Client ID: {job.clientId?.slice(0, 6)}...
+          </span>
+           <span className="text-slate-300">
+            Freelancer : {job.freelancerId?.slice(0, 6)}...
           </span>
         </div>
 

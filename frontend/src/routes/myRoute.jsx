@@ -17,7 +17,7 @@ const myRoute = createBrowserRouter(
     createRoutesFromElements(
      <>
       <Route path="/register" element={<RegisterForm/>} />
-      <Route path="/login" element={<Login/>} />
+      <Route path="/" element={<Login/>} />
       <Route path="/client" element={<ClientDashboard/>} />
       <Route path="/postjob" element={<PostJobForm/>} />
       <Route path="/myjobs" element={<MyJobs/>} />

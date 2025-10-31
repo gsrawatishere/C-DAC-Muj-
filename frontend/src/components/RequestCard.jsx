@@ -1,10 +1,10 @@
 import React from "react";
 import { Clock, User, Briefcase, CheckCircle } from "lucide-react";
-import { motion } from "framer-motion";
 
 const RequestCard = ({ request, onApprove }) => {
+
   const handleApprove = () => {
-    if (onApprove) onApprove(request.id);
+    if (onApprove) onApprove(request.jobId,request.freelancerId);
   };
 
   return (
@@ -18,7 +18,7 @@ const RequestCard = ({ request, onApprove }) => {
         <h3 className="text-xl font-semibold text-emerald-400">
           Freelancer Request
         </h3>
-        <span
+        {/* <span
           className={`px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide ${
             request.status === "PENDING"
               ? "bg-yellow-400/10 text-yellow-400 border border-yellow-400/30"
@@ -28,7 +28,7 @@ const RequestCard = ({ request, onApprove }) => {
           }`}
         >
           {request.status}
-        </span>
+        </span> */}
       </div>
 
       {/* Message */}
@@ -42,7 +42,7 @@ const RequestCard = ({ request, onApprove }) => {
           <User size={16} className="text-emerald-400" />
           <span>
             <strong>Freelancer:</strong>{" "}
-            <span className="text-slate-300">{request.freelancerId}</span>
+            <span className="text-slate-300">{request.freelancerName}</span>
           </span>
         </div>
 
@@ -50,7 +50,7 @@ const RequestCard = ({ request, onApprove }) => {
           <Briefcase size={16} className="text-emerald-400" />
           <span>
             <strong>Job:</strong>{" "}
-            <span className="text-slate-300">{request.jobId}</span>
+            <span className="text-slate-300">{request.jobTitle}</span>
           </span>
         </div>
 
